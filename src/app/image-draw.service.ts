@@ -25,28 +25,22 @@ export class ImageDrawService {
       position: 'topright',
       draw: {
         polyline: {
+          showLength: false,
           shapeOptions: {
             color: '#f357a1',
             weight: 10
           }
         },
         polygon: {
-          allowIntersection: true, // Restricts shapes to simple polygons
-          drawError: {
-            color: 'red', // Color the shape will turn when intersects
-            message: '<strong>Oh snap!<strong> you can\'t draw that!' // Message that will show when intersect
-          },
-          shapeOptions: {
-            color: 'red'
-          }
+          allowIntersection: true,
         },
         circlemarker: false,
-        circle: false, // Turns off this drawing tool
+        circle: false,
         rectangle: false
       },
       edit: {
-        featureGroup: this.drawLayers, //REQUIRED!!
-        remove: true
+        featureGroup: this.drawLayers,
+        remove: true,
       }
     };
 
