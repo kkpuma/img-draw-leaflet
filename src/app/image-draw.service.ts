@@ -15,7 +15,8 @@ export class ImageDrawService {
       crs: CRS.Simple,
       minZoom: -3,
       zoomSnap: 0,
-      zoomDelta: .5
+      zoomDelta: .5,
+      preferCanvas: true
     });
 
     this.map.addLayer(this.drawLayers);
@@ -52,7 +53,7 @@ export class ImageDrawService {
     const drawControl = new Control.Draw(options);
     this.map.addControl(drawControl);
 
-    this.onDrawCreated();
+    this.drawingCreated();
   }
 
   addImage(imageUrl: string, width: number, height: number) {
@@ -61,16 +62,20 @@ export class ImageDrawService {
     this.map.fitBounds(overlay.getBounds());
   }
 
-  onDrawCreated(): void {
+  drawingCreated(): void {
     this.map.on(Draw.Event.CREATED, (e) => {
-      console.log(e);
       this.drawLayers.addLayer(e.layer);
     });
   }
 
   addDrawings(geojson: any) {
     this.drawLayers.clearLayers();
-    this.drawLayers.addLayer(geoJSON(geojson));
+    geoJSON(geojson, {
+      onEachFeature: (_, layer) => {
+        this.drawLayers.addLayer(layer)
+      }
+    });
+
   }
 
 }
