@@ -1,14 +1,10 @@
 <div class="container">
 
-  <div id="image-draw-map">
-
-
-  </div>
-
+  <div id="image-draw-map"></div>
 
   <div class="file-upload">
     <label for="image">
-      Upload billede
+      Tilføj billede
     </label>
     <input #image
            type="file"
@@ -29,9 +25,9 @@
            (change)="handleDrawingUpload($event)">
   </div>
 
-
   <button id="download"
-          (click)="downloadGeojson()">Download tegning</button>
+          (click)="downloadGeojson()">Download tegning
+  </button>
 
 
 </div>

@@ -45,7 +45,7 @@ export class ImageDrawService {
       },
       edit: {
         featureGroup: this.drawLayers, //REQUIRED!!
-        remove: false
+        remove: true
       }
     };
 
@@ -65,12 +65,12 @@ export class ImageDrawService {
     this.map.on(Draw.Event.CREATED, (e) => {
       console.log(e);
       this.drawLayers.addLayer(e.layer);
-      console.log(this.drawLayers.toGeoJSON())
     });
   }
 
   addDrawings(geojson: any) {
-    geoJSON(geojson).addTo(this.map);
+    this.drawLayers.clearLayers();
+    this.drawLayers.addLayer(geoJSON(geojson));
   }
 
 }
