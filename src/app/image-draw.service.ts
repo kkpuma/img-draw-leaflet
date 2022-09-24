@@ -16,7 +16,8 @@ export class ImageDrawService {
       minZoom: -3,
       zoomSnap: 0,
       zoomDelta: .5,
-      preferCanvas: true
+      preferCanvas: true,
+      touchExtend: false
     });
 
     this.map.addLayer(this.drawLayers);
